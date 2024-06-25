@@ -4,19 +4,28 @@ let cartaoAtual = 0;
 const cartoes = document.querySelectorAll(".cartao");
 
 btnAvancar.addEventListener("click", function () {
-  if (cartaoAtual === cartoes.length - 1) return;
-  const cartaoSelecionado = document.querySelector(".selecionado");
-  cartaoSelecionado.classList.remove("selecionado");
+  const ehUltimoCartao = cartaoAtual === cartoes.length - 1;
+  if (ehUltimoCartao) return;
+  esconderCartaoSelecionado();
 
   cartaoAtual++;
-  cartoes[cartaoAtual].classList.add("selecionado");
+  mostrarCartao();
 });
 
 btnVoltar.addEventListener("click", function () {
-  if (cartaoAtual === 0) return;
-  const cartaoSelecionado = document.querySelector(".selecionado");
-  cartaoSelecionado.classList.remove("selecionado");
+  const ehPrimeiroCartao = cartaoAtual === 0;
+  if (ehPrimeiroCartao) return;
+  esconderCartaoSelecionado();
 
   cartaoAtual--;
-  cartoes[cartaoAtual].classList.add("selecionado");
+  mostrarCartao();
 });
+
+function mostrarCartao() {
+  cartoes[cartaoAtual].classList.add("selecionado");
+}
+
+function esconderCartaoSelecionado() {
+  const cartaoSelecionado = document.querySelector(".selecionado");
+  cartaoSelecionado.classList.remove("selecionado");
+}
